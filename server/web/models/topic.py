@@ -1,0 +1,4 @@
+
+
+class Votable(object):
+	pass

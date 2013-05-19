@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}    
+{% endblock %}
+
+
+
+{% block content %}
+<div id="content">		  
+    <form name="login_form" name="" method="post" action="/login">
+        {{ xsrf_form_html()|safe}} 
+        <div id="login_error">
+    		{{login_msg}}
+    	</div>
+        <div class="item">
+            <input id="email" name="email" type="text" class="basic_input" maxlength="50" size="15" tabindex="1" placeholder="Email"/>
+        </div>
+        <div class="item">
+            <input id="password" name="password" type="password" class="basic_input" tabindex="2" maxlength="20" size="15" placeholder="Password"/>
+        </div>
+        <div class="item_submit">
+            <input type="checkbox" checked="checked" name="allow_passwordless" value="allow_passwordless">Remember Me
+            <input type="submit" value="Log In"  class="basic_button" tabindex="6" />
+        </div>
+    </form>
+</div>
+{% endblock %}

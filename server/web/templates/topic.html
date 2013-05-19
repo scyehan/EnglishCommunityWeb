@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}    
+{% endblock %}
+
+
+{% block cssblock %}
+{{ super() }}
+<link href="/static/css/topic.css" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block header %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+    <div class="span7">  
+        <div id="topic" class="singletopic">
+            <div ><h3>{{topic['title']}}</h3></div>
+            <div>{{topic['content']}}</div>
+            <div class="userinfo">Posted by {{topic['username']}}</div>
+        </div>
+        <div>
+            {%- for comment in comments -%}
+            <div class="tpcomment">
+                <div>{{comment['content']}}</div>
+                <div class="userinfo">Posted by {{comment['username']}}</div>
+            </div>
+            {%- endfor -%}
+        </div>
+        <div id="comments" class="comment_editor">
+            <form name="commentform" name="" method="post" action="/topic/comment?tp={{topic['_id']}}">
+                <textarea  rows="3" class="span12"  name="comment" placeholder="comment here..."></textarea>
+                <div class="itemsubmit">
+                    <label>&nbsp;</label>
+                    <input type="submit" value="submit"  class="btn" tabindex="6" />
+                </div>
+            </form>
+        </div>
+    </div>      
+{% endblock %}
+
+{% block rightsidebar %}
+{%- if topic.editable -%}
+    <div class="btn-group">
+        <a href="/edittopic?tp={{topic._id}}" <button id="guess_btn" type="submit" class="btn btn-success">Edit Topic</button></a>
+    </div>
+{%- endif -%}
+{% endblock %}    
+
+{% block leftsidebar %}
+<div class="span2">
+<!--Sidebar content-->
+	<div id="user">
+		<div id="username">
+			<span>username:</span>{{user.username}}
+		</div>
+	</div>
+</div>	
+{% endblock %}
+
+{% block jsblock %}
+{% endblock %}
